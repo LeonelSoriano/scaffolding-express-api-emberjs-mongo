@@ -1,0 +1,85 @@
+ <!DOCTYPE html>
+ <html >
+
+     <head>
+         <title>Page Title</title>
+
+         <meta charset="utf-8" />
+
+
+         <script type="text/javascript" src="./resource/jquery/src/jquery.js"></script>
+         <script type="text/javascript" src="./resource/ember/ember.debug.js"></script>
+        <script type="text/javascript" src="./resource/ember/ember-template-compiler.js"></script>
+     <script type="text/javascript" src="./resource/ember-data/ember-data.js"></script>
+
+<script type="text/javascript" src="./hello.js"></script>
+     </head>
+     <body>
+
+         <h1>prueba de eber js</h1>
+         <p>probando guardando datos :D</p>
+
+
+
+            <script type="text/x-handlebars" id="index">
+
+
+                <label for="nobreiD" >nombre </label>
+                {{input type="text" id="nobreId" value=nameValue }}
+                <br/><br/>
+
+                <label for="edadId" > edad </label>
+                {{input type="text" id=edadId  value=edadId  }}
+
+                <br/><br/>
+
+                <button {{action save }} id="save" >Guardar</button>
+
+
+                <br/><br/><br/>
+
+                 <table class="table table-bordered">
+                    <thead>
+                        <th>nobre</th>
+                        <th>edad</th>
+                        <th>eliminar</th>
+                    </thead>
+                    <tbody>
+
+
+                         {{#each sortedSongs as |item|}}
+               				<tr>
+               				<td>{{item.name}}</td>
+                             
+  							<td>{{item.year}}</td>
+  							<td>  <button {{action actualizar item.id}} id="update" >Actualizar</button>  </td>
+
+
+  							<td>  <button {{action eliminar item.id}} id="save" >Eliminar</button>  </td>
+						</tr>
+             			{{/each}}
+
+
+
+
+
+
+
+
+
+                    </tbody>
+
+                 </table>
+
+
+            {{outlet}}
+            </script>
+
+
+
+
+
+
+
+ </body>
+ </html>

@@ -1,0 +1,118 @@
+ <!DOCTYPE html>
+ <html >
+ <head>
+
+ 	<title>TODO APP</title>
+      <meta charset="utf-8">
+
+
+      <link rel="stylesheet" type="text/css" href="todo.css">
+
+      <script type="text/javascript" src="./resource/jquery/src/jquery.js"></script>
+      <script type="text/javascript" src="./resource/ember/ember.debug.js"></script>
+      <script type="text/javascript" src="./resource/ember/ember-template-compiler.js"></script>
+     <script type="text/javascript" src="./resource/ember-data/ember-data.js"></script>
+     <script type="text/javascript" src="./todo.js"></script>
+
+ </head>
+ <body>
+
+
+ <script type="text/x-handlebars">
+     <div id="titulo">TODO</div>
+     {{outlet}}
+ </script>
+
+
+
+<script type="text/x-handlebars" data-template-name="components/button-expander">
+    <button {{action 'toggle'}} class="expander"  >{{textToggle}}</button>
+</script>
+
+
+<script type="text/x-handlebars" data-template-name="index">
+
+
+
+
+
+
+<div id="content">
+
+
+	<div id="line1">
+
+		<div id="line1_1">
+            {{button-expander callback=(action toggleAction)}}
+        </div>
+
+		<div id="line1_2">
+            {{input value=itemText class="fakeInput" key-down=(action enterNewValue) }}
+
+		</div>
+
+	</div>
+
+
+
+
+	<div id="line2">
+
+
+        {{#each itemsTodo as |item|}}
+    		<div class="line2" onclick={{action completeTodo item.id item.complete}}>
+
+    			<div class="line2_1">
+                    {{#ifCond item.complete '==' true}}
+                    ✔
+                    {{/ifCond}}
+
+                    {{#ifCond item.complete '==' false}}
+                    O
+                	{{/ifCond}}
+                </div>
+
+    			<div class="line2_2">
+                    {{item.text}}
+    			</div>
+
+    			<div class="line2_3">X</div>
+
+    		</div>
+        {{/each}}
+
+
+
+	</div>
+
+	<div id="line3">
+
+		<div id="line3_1">por hacer {{cantidadTotalPorHacer}}</div>
+
+		<div id="line3_2">
+
+			<button class="b_todos" style={{fillStyleTodo}} {{action 'clickTodos'}} >
+                Todos
+            </button>
+			<button class="b_todos" style={{fillStyleActivos}} {{action 'clickActivos'}}>
+                Activos
+            </button>
+			<button  class="b_todos" style={{fillStyleCompletos}} {{action 'clickCompletos'}} >
+                Completos
+            </button>
+		</div>
+
+		<div id="line3_3">borrar hechos</div>
+
+
+
+	</div>
+
+
+</div>
+
+</script>
+
+
+ </body>
+ </html>
