@@ -1,13 +1,18 @@
 var winston = require('winston');
+
+var global = require('../Global.js');
+
+
 winston.emitErrs = true;
 
 var logger = new winston.Logger({
     transports: [
         new winston.transports.File({
             level: 'info',
-            filename: './logs/all-logs.log',
+            filename:  global.path_loggeer,
             handleExceptions: true,
             json: true,
+
             maxsize: 5242880, //5MB
             maxFiles: 5,
             colorize: false

@@ -6,7 +6,7 @@ var logger = require("./util/logger");
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var fs = require('fs');
-var index = require('./routes/index');
+//var index = require('./routes/index');
 var users = require('./routes/users');
  
 
@@ -31,9 +31,12 @@ app.use(express.static(path.join(__dirname, 'public')));
 logger.debug("Overriding 'Express' logger");
 app.use(require('morgan')({ "stream": logger.stream }));
 
-app.use('/', index);
+//app.use('/', index);
 app.use('/users', users);
-app.use('/', require('./api/rest/ejemploApi.js'));
+
+
+require('./api/rest/ejemploApi.js')(app);
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -54,10 +57,9 @@ logger.debug("Overriding 'Express' logger");
 });
 
 
-var routePath="./api/rest/"; //add one folder then put your route files there my router folder name is routers
+var routePath="./api/rest/";
 
-
-
+console.log(path.join(__dirname, 'access.log'));
 
 
 module.exports = app;
